@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
   basePath: "/people-and-cats",
-  trailingSlash: true,
+  swcMinify: true,
+  // trailingSlash: true,
 };
 
 export default nextConfig;
