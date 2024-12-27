@@ -1,6 +1,6 @@
 import { GetNextPageParamFunction, QueryFunction } from "@tanstack/react-query";
 
-interface Cats {
+export interface Cats {
     current_page:   number;
     data:           Datum[];
     first_page_url: string;

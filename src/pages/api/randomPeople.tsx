@@ -1,19 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { queryKey, getNextPageParam, queryFn } from "./getPeopleData";
 
 const useFetchRandomPeople = () => {
 
-  const peopleCall = useQuery({
-    queryKey: ['randomPeople'],
-    queryFn: async () => {
-      const response = await fetch('https://randomuser.me/api?results=10');
-      if (!response.ok) {
-        throw new Error('Failed to fetch people info');
-      }
-      return response.json();
-    },
+  const query = useInfiniteQuery({
+    queryKey,
+    queryFn,
+    initialPageParam: 1,
+    getNextPageParam,
   });
 
-  return peopleCall;
+  return query;
+
 };
 
 export default useFetchRandomPeople;
