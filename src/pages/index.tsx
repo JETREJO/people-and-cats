@@ -2,23 +2,27 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import useFetchCatsFacts from "./api/catsFacts";
 import useFetchRandomPeople from "./api/randomPeople";
 import SkeletonCard from '@/components/skeletonCard';
-
-interface CatCall {
-  catCallPending: boolean;
-  catCallError: any;
-  catData: any;
-}
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
 
 export default function Home() {
 
+  const { ref, inView } = useInView();
+
   const cats = useFetchCatsFacts();
   const people = useFetchRandomPeople();
+
+  useEffect(() => {
+    if (inView) {
+      cats.fetchNextPage();
+    }
+  }, [inView]);
 
   if (cats.isError) return <p>Error: {cats.error.message}</p>;
   if (people.isError) return <p>Error: {people.error.message}</p>;
 
   people && people.data && console.log("PEOPLE: ", people.data);
-  cats && cats.data && console.log("CATS: ", cats.data);
+  cats && cats.data && console.log("CATS: ", cats.data.pages[0].data);
 
 
   return (
@@ -35,10 +39,15 @@ export default function Home() {
                     rounded-full" />
                     <h2 className="font-semibold">{data.name.first} {data.name.last}</h2>
                   </div>
-                  <p>{cats.data.data[index].fact}</p>
+                  <p>{ cats.data.pages[0].data[index].fact }</p>
                 </li>
               ))
             : <SkeletonCard/>
+        }
+        { cats.data?.pages[0].next_page_url &&
+          <div ref={ref}>
+            <SkeletonCard/>
+          </div>
         }
       </ul>
     </div>
