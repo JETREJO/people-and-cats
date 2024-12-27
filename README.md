@@ -20,4 +20,4 @@ bun dev
 
 Now, open [http://localhost:3000/people-and-cats](http://localhost:3000/people-and-cats) with your browser to see the result.
 
-You can also view the application from the Vercel domain by entering: [https://people-and-cats-ajqgth6t4-javier-trejos-projects.vercel.app/people-and-cats] (https://people-and-cats-ajqgth6t4-javier-trejos-projects.vercel.app/people-and-cats)
+You can also view the application from the Vercel domain by entering: [https://people-and-cats-ajqgth6t4-javier-trejos-projects.vercel.app/people-and-cats](https://people-and-cats-ajqgth6t4-javier-trejos-projects.vercel.app/people-and-cats)
