@@ -1,7 +1,7 @@
-import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import useFetchCatsFacts from "./api/catsFacts";
 import useFetchRandomPeople from "./api/randomPeople";
+import SkeletonCard from '@/components/skeletonCard';
 
 interface CatCall {
   catCallPending: boolean;
@@ -22,7 +22,7 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100 pt-5">
+    <div className="min-h-screen flex justify-center bg-slate-100 pt-5">
       <ul className="w-full max-w-lg 0">
         {
           people.data && cats.data
@@ -38,7 +38,7 @@ export default function Home() {
                   <p>{cats.data.data[index].fact}</p>
                 </li>
               ))
-            : <Skeleton/>
+            : <SkeletonCard/>
         }
       </ul>
     </div>
